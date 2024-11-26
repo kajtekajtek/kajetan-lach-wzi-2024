@@ -1,0 +1,47 @@
+\documentclass[a4paper, 11pt]{article}
+\usepackage{graphicx}
+
+\title{%
+\vspace{-2.5cm}
+\textbf{Nintendo Entertainment System Emulator}\\
+Functional and Non-Functional Requirements
+}
+\date{\today}
+\author{Kajetan Lach}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+This document contains \textbf{functional and not-functional requirements} of our Nintendo Entertainment System emulator project.
+
+\section{Functional Requirements}
+
+\subsection{ROM Loading}
+To emulate any program, first step is loading it into memory. The emulator must provide a file selection interface that allows users to load NES ROM files easily. The goal is to successfully load a valid ROM and initiate gameplay.
+
+\subsection{Basic Gameplay Emulation}
+The emulator's core functionality is accurate emulation. It must faithfully replicate the NES CPU, PPU and APU to deliver a playable experience for most NES games. This requires correct graphics, sound and input responses for a sample set of popular ROMs.
+
+\subsection{Debugging Tools}
+Debugging tools are a key component of the emulator's educational value. The emulator should offer features such as step-by-step execution, memory content inspection and register state visualization. These tools must be clear, intuitive and well-illustrated with graphical representations to enhance usability and understanding 
+
+\subsection{Error Handling}
+The emulator must display user-friendly error messages when encountering critical failures. Error messages should be design so that it's easy to understand what happened when program crashed. Easy error reporting functionality should also be a part of appropriate error handling.
+
+\subsection{Settings}
+Although advanced configuration is not in scope of this project, our software must allow users to adjust basic quality-of-life settings such as screen scaling, aspect ratio, resolution and audio volume.
+
+\subsection{Input Configuration}
+Simple input configuration is another functionality that emulator shall provide for its user for the sake of basic quality-of-life matter. The program must allow users to configure and map keyboard inputs to NES actions and use them to control gameplay in comfortable manner.
+
+\section{Non-Functional Requirements}
+
+\subsection{Performance}
+
+\subsection{Documentation, Code Base \& Other Resources}
+
+\subsection{Usability}
+
+\end{document}
