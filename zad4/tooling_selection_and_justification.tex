@@ -1,0 +1,214 @@
+\documentclass[a4paper, 11pt]{article}
+\usepackage{graphicx}
+
+\title{%
+\vspace{-4.5cm}
+\textbf{Nintendo Entertainment System Emulator}\\
+Tooling Selection and Justification
+}
+\date{\today}
+\author{Kajetan Lach}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+This document contains a detailed overview of the tools selection for the Nintendo Entertainment System emulator project. The selection process, justification for each tool and their contribution to the project's development are the topics covered.
+
+\section{Programming Languages}
+
+\subsection{C++}
+C++ is a general-purpose programming language created as an extension of the C programming language. It is widely used for systems programming, embedded systems, and game development. Statically typed, compiled, multi-paradigm language that supports procedural, object-oriented, and generic programming. It is known for its performance, efficiency, and flexibility.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.25\textwidth]{cplusplus.png}
+\end{figure}
+
+
+\subsubsection{Purpose}
+\textbf{Core implementation} of the emulator. It will be used to implement the CPU, PPU, APU and other parts of the NES system.
+
+\subsubsection{Justification}
+C++ provides \textbf{high performance} and \textbf{low-level memory control}, which are critical for emulating hardware accurately. Its \textbf{rich ecosystem of libraries} supports tasks like file handling, input processing and graphics rendering.
+
+\subsubsection{Integration}
+C++ works seamlessly with graphics libraries like \textbf{SDL2} and \textbf{debugging tools}, providing a robust foundation for emulator development.
+
+\subsection{Python}
+Python is a high-level, interpreted programming language known for its simplicity, readability, and versatility. It is widely used for web development, data analysis, and automation. Dynamically typed, garbage-collected, multi-paradigm language that supports procedural, object-oriented, and functional programming.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.3\textwidth]{python.png}
+\end{figure}
+
+\subsubsection{Purpose}
+Scripting and automation for \textbf{testing} and \textbf{supplemental tooling}, for example, generating test data or analyzing ROMs.
+
+\subsubsection{Justification}
+Python's \textbf{ease of use} and \textbf{vast library ecosystem} make it ideal for quick automation tasks.
+
+\subsubsection{Integration}
+Python complements the C++ codebase by \textbf{handling non-performance-critical tasks} and providing a \textbf{flexible environment} for testing and analysis.
+
+\newpage\section{Frameworks and Libraries}
+
+\subsection{SDL2 (Simple DirectMedia Layer)}
+SDL2 is a cross-platform development library designed to provide low-level access to audio, keyboard, mouse, and graphics hardware. It is widely used in game development, multimedia applications, and emulators.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.4\textwidth]{sdl.png}
+\end{figure}
+
+\subsubsection{Purpose}
+\textbf{Graphics rendering}, \textbf{input handling}, and \textbf{audio output} for the emulator.
+
+\subsubsection{Justification}
+SDL2 is \textbf{cross-platform}, making it easier to ensure portability across Windows, macOS and Linux. It is \textbf{lightweight}, yet \textbf{powerful}, providing the necessary capabilities for rendering NES graphics and processing inputs.
+
+\subsubsection{Integration}
+Integrates directly with C++ and serves as the interface for displayng emulated visuals and audio outputs.
+
+\newpage\subsection{Google Test}
+Google Test is a C++ testing framework developed by Google. It provides a rich set of assertion macros and test fixtures for writing unit tests.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.4\textwidth]{gtest.png}
+\end{figure}
+
+\subsubsection{Purpose}
+\textbf{Unit testing} the emulator's core components such as the CPU emulation logic.
+
+\subsubsection{Justification}
+Google Test is \textbf{mature} and \textbf{widely-used}, offering many features like assertions and parameterized tests.
+
+\subsubsection{Integration}
+Works with C++ to validate the accuracy of hardware emulation.
+
+\subsection{ImGui}
+ImGui is a C++ library for immediate mode graphical user interfaces. It is designed to be easy to integrate and use for creating debug tools and visualizations.
+
+\subsubsection{Purpose}
+Building the emulator's \textbf{graphical user interface}.
+
+\subsubsection{Justification}
+ImGui is \textbf{fast, portable and flexible}. It's ideal for building debugging interfaces or minimalistic GUIs for tools.
+
+\subsubsection{Integration}
+Directly integrates with \textbf{SDL2} for rendering and complements the emulator's debugging tools by providing real time visual feedback.
+
+\section{Development Tools}
+
+\subsection{Visual Studio Code}
+Visual Studio Code is a lightweight, open-source code editor developed by Microsoft. It supports a wide range of programming languages and extensions.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.2\textwidth]{vscode.png}
+\end{figure}
+
+\subsubsection{Purpose}
+Main \textbf{Integrated Development Environment} for writing and debugging code.
+
+\subsubsection{Justification}
+VS Code is \textbf{lightweight, extensible} and provides a rich set of extensions for supporting both C++ and Python development.
+
+\subsubsection{Integration}
+Works well with CMake for build automation and integrates with Git for version control.
+
+\subsection{CMake}
+CMake is an open-source build system designed to build, test, and package software projects. It generates build files for various platforms and build tools.
+
+\subsubsection{Purpose}
+\textbf{Build system} and \textbf{project configuration} for the emulator.
+
+\subsubsection{Justification}
+CMake simplifies \textbf{cross-platform} builds, \textbf{automation} of generation of project files and \textbf{dependency management}.
+
+\subsubsection{Integration}
+Works seamlessly with compilers, IDEs and CI/CD systems to manage builds efficiently.
+
+\subsection{Git}
+Git is a distributed version control system used for tracking changes in source code during software development.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.2\textwidth]{git.png}
+\end{figure}
+
+\subsubsection{Purpose}
+Version control for source code and documentation.
+
+\subsubsection{Justification}
+Git provides a \textbf{reliable} way to track changes, versions, collaborate with others and revert code when necessary.
+
+\subsubsection{Integration}
+Integrates with Github for hosting remote repositories and managing project collaboration. Works well with VS Code for version control during development.
+
+\newpage\section{Project Management and Collaboration Tools}
+
+\subsection{Github, Github Pages, Github Actions}
+Github is a web-based platform for hosting Git repositories and managing software development projects.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.4\textwidth]{github.png}
+\end{figure}
+
+\subsubsection{Purpose}
+Repository hosting and collaboration. \textbf{Github Pages} for hosting project documentation and additional educational resources for future users. \textbf{Github Actions} for CI/CD.
+
+\subsubsection{Justification}
+Github offers \textbf{issue tracking}, \textbf{pull request workflows}, \textbf{CI/CD} systems and \textbf{documentation hosting} in one platform.
+
+\subsubsection{Integration}
+Facilitates collaboration, code reviews and CI/CD integration making it a central hub for development.
+
+\newpage\subsection{Discord}
+Discord is a communication platform designed for communities, gaming, and team collaboration.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.4\textwidth]{discord.png}
+\end{figure}
+
+\subsubsection{Purpose}
+Team communication and collaboration.
+
+\subsubsection{Justification}
+Discord provides \textbf{text chat}, \textbf{voice chat}, and \textbf{screen sharing} features, making it ideal for real-time communication and collaboration. It's free and easy to use.
+
+\subsubsection{Integration}
+Enables team members to communicate effectively, share progress, and discuss project-related topics.
+
+\section{Design and Documentation Tools}
+
+\subsection{Draw.io}
+Draw.io is a free online diagramming tool for creating flowcharts, process diagrams, and other visual representations.
+
+\subsubsection{Purpose}
+Creating \textbf{system architecture diagrams} and \textbf{design documentation}.
+
+\subsubsection{Justification}
+Provides an \textbf{intuitive} interface for drawing UML diagrams, flowcharts and system overviews.
+
+\subsubsection{Integration}
+Enables the team to visualize and communicate the system architecture effectively.
+
+\subsection{LaTeX}
+LaTeX is a typesetting system used for creating high-quality documents, reports, and scientific papers.
+
+\subsubsection{Purpose}
+Writing \textbf{technical documentation} and \textbf{reports}.
+
+\subsubsection{Justification}
+LaTeX provides \textbf{professional} and \textbf{consistent} formatting for technical documents, making it ideal for writing detailed reports and documentation.
+
+\subsubsection{Integration}
+Works well with version control systems like Git and provides a clean, structured way to write technical documents.
+
+\end{document}
