@@ -1,0 +1,70 @@
+\documentclass[a4paper, 11pt]{article}
+\usepackage{graphicx}
+\usepackage{pdflscape}
+
+\title{%
+%\vspace{-4.5cm}
+\textbf{Nintendo Entertainment System Emulator}\\
+Risk Assesment and Mitigation Plan
+}
+\date{\today}
+\author{Kajetan Lach}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+This document contains a risk assesment and mitigation plan for the Nintendo Entertainment System Emulator project. The purpose of this document is to identify potential risks that may occur during the project and to provide strategies to mitigate them.
+
+\section{Risk Assesment and Mitigation Strategies}
+
+\subsection{Technical Challenges in Hardware Emulation}
+\textbf{Description:} Emulating the hardware of the Nintendo Entertainment System is a fundamental part of the project. This task can be highly complex, as the 6502 CPU and PPU are not trivial to emulate and require a deep understanding of the hardware with many undocumented edge cases to consider.\\
+\textbf{Probability:} High.\\
+\textbf{Impact:} Very high.\\
+\textbf{Mitigation Strategy:} Divide the hardware emulation into smaller, independently testable components. Use NES technical documentation and existing community projects as references. Test each component extensively with known test ROMs before integration. Keep the design modular to facilitate debugging and future improvements.\\
+
+\newpage\subsection{Timeline Delays due to Unforeseen Complexity}
+\textbf{Description:} The project may encounter delays due to underestimated complexity in implementing and debugging specific features.\\
+\textbf{Probability:} High.\\
+\textbf{Impact:} Medium.\\
+\textbf{Mitigation Strategy:} Establish a clear project plan with defined milestones and deadlines. Regularly review progress and reprioritize tasks as needed. Include contingency time in the project schedule to account for delays. Use agile development principles to ensure iterative progress and minimize scope creep.\\
+
+\subsection{Limited Team Expertise in Niche Areas}
+\textbf{Description:} NES emulation requires deep knowledge of the system's architecture, emulation and system's programming which may be lacking in the team.\\
+\textbf{Probability:} Low.\\
+\textbf{Impact:} High.\\
+\textbf{Mitigation Strategy:} Invest in team training. Gather existing documentation and community resources to learn about NES hardware and software. Collaborate with experienced developers in the emulation community for guidance and advice. Encourage team members to explore existing open-source emulators for insights and inspiration. Assign time for research and experimentation during the initial stages of the project.\\
+
+\subsection{Legal Concerns Over Copyrighted ROM Usage}
+\textbf{Description:} Users might use the emulator to play copyrighted ROMs illegally, potentially exposing the project to legal risks.\\
+\textbf{Probability:} Low.\\
+\textbf{Impact:} Very high.\\
+\textbf{Mitigation Strategy:} Clearly state in the documentation and user interface that the emulator does not include or distribute copyrighted ROMs. Provide legal disclaimers emphasizing the need to own original game copies to use the emulator legally. Avoid integrating features that enable downloading or distributing ROMs directly. Include references to open-license ROMs or homebrew software as examples.\\
+
+\newpage\subsection{Performance Issues on Low-Spec Systems}
+\textbf{Description:} The emulator might perform poorly on older or low-spec systems, potentially alienating part of the target audience, especially groups with limited access to new hardware, like students or retro gaming enthusiasts.\\
+\textbf{Probability:} Medium.\\
+\textbf{Impact:} Medium.\\
+\textbf{Mitigation Strategy:} Profile and optimize the emulator code for performance. Focus on achieving balance between performance and accuracy by allowing users to toggle certain performance-intensive features. Test the emulator on a variety of hardware configurations to identify bottlenecks. Provide clear hardware requirements and settings adjustments to improve performance.\\
+
+\section{Risk Matrix}
+
+\makebox[\linewidth]{
+    \begin{tabular}{|c|c|c|c|c|}
+        \hline
+        \textbf{Probability/Impact} & \textbf{LOW} & \textbf{MEDIUM} & \textbf{HIGH} & \textbf{VERY HIGH} \\ 
+        \hline
+        \textbf{LOW} & - & - & Limited team expertise & Legal concerns over ROMs \\ 
+        \hline
+        \textbf{MEDIUM} & - & Performance issues & - & - \\ 
+        \hline
+        \textbf{HIGH} & - & Timeline delays & - & Technical challenges in emulation \\ 
+        \hline
+        \textbf{VERY HIGH} & - & - & - & - \\ 
+        \hline
+    \end{tabular}
+}
+
+\end{document}
