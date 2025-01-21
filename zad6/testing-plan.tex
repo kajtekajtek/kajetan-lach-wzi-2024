@@ -1,0 +1,159 @@
+\documentclass[a4paper, 11pt]{article}
+\usepackage{graphicx}
+\usepackage{pdflscape}
+
+\title{%
+%\vspace{-4.5cm}
+\textbf{Nintendo Entertainment System Emulator}\\
+Testing Plan
+}
+\date{\today}
+\author{Kajetan Lach}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+This document outlines the strategy, tools and specific test cases for ensuring the NES Emulator meets its functional requirements and maintains reliability and performance standards. It includes multiple testing types (unit, integration, acceptance) and details on how each type will be conducted.
+
+\section{Testing Strategy Overview}
+
+\subsection{Unit Testing}
+
+\subsubsection{Goal}
+Validate individual components (e.g., CPU instruction handling, memory read/write functions) in isolation.
+
+\subsubsection{Scope}
+Core C++ classes and functions responsible for emulation logic.
+
+\subsubsection{Tools}
+\textbf{Google Test} for test framework, potentially \textbf{Google Mock} for mocking dependencies.
+
+\subsection{Integration Testing}
+
+\subsubsection{Goal}
+Ensure that modules (CPU, PPU, APU, input handling, etc.) work togheter as intended when combined.
+
+\subsubsection{Scope}
+Full rendering loop, user input to on-screen behavior and audio output.
+
+\subsubsection{Tools}
+A custom test harness or script (e.g., Python) to run the emulator with various configurations. Automated test ROMs that specifically validate memory timing, sprite rendering and audio synchronization.
+
+\subsection{User Acceptance Testing (UAT)}
+
+\subsubsection{Goal}
+Validate the emulator against real-world usage scenarios, ensuring it meets user expectations (students, archivists, gamers).
+
+\subsubsection{Scope}
+Loading games, configuring input, adjusting settings and using debug tools from the end-user perspective.
+
+\subsubsection{Tools}
+Manual checklists for testers. Exploratory testing to capture user feedback on usability and performance.
+
+\section{Testing Tools and Frameworks}
+
+\subsection{Google test (gTest)}
+C++ framework for writing and running unit tests. Provides a wide range of assertions and test fixtures for organizing test cases.
+
+\subsection{Google Mock (gMock)} 
+Used for mocking dependencies in unit tests. Allows for testing components in isolation by replacing real objects with mock objects.
+
+\subsection{Python}
+Scripting language for writing test harnesses and automation scripts. Can automate launching the emulator with different ROMs and configurations.
+
+\subsection{Manual Testing Checklists}
+Documented steps to validate core end-to-end scenarios.
+
+\subsection{Automated Build \& Test (CI/CD)}
+Github Actions or similar platform to automatically build and run tests on each commit.
+
+\section{Test Cases}
+Below are examples of test cases covering key functionalities. Each includes a description, test steps and expected results.
+
+\subsection{Unit Test Example: CPU Instruction Decoding}
+Verify that the CPU module correctly decodes and executes the LDA (Load Accumulator) instruction with different addressing modes.
+
+\textbf{Preconditions:} CPU instance is initialized. Memory is loaded with test program containing LDA instructions.
+
+\textbf{Test Steps:} 
+\begin{enumerate}
+    \item Set up CPU registers and memory to known values.
+    \item Execute the LDA instruction in immediate addresing mode.
+    \item Execute the LDA instruction in zero-page addressing mode.
+    \item Check the accumulator and status flags after each operation.
+\end{enumerate}
+
+\textbf{Expected Results:}
+Thge accumulator register contains the expected value after each LDA instruction. The Zero and Negative flags are set/unset correctly based on the loaded value.
+
+\subsection{Unit Test Example: Memory Read/Write}
+Ensure the memory module can read and write bytes at specified addresses.
+
+\textbf{Preconditions}
+Memory object is created.
+
+\textbf{Test Steps}
+\begin{enumerate}
+    \item Write a byte to an address (e.g., 0x2000).
+    \item Read the byte from the same address.
+    \item Compare the read value with the written value.
+\end{enumerate}
+
+\textbf{Expected Results}
+The read value matches the written value. No exceptions or errors occur for valid addresses.
+
+\textbf{Expected Results:}
+Thge accumulator register contains the expected value after each LDA instruction. The Zero and Negative flags are set/unset correctly based on the loaded value.
+
+\subsection{Integration Test Example: Full Gameplay Loop}
+Validate that the emulator can load and run a standard NES ROM from the start  screen to in-game, verifying graphics, input and audio.
+
+\textbf{Preconditions}
+Emulator compiled and installed on a target system. A known working ROM is available.
+
+\textbf{Test Steps}
+\begin{enumerate}
+    \item Launch the emulator and load the ROM via the file selection interface.
+    \item Observe the title screen for correct rendering and audio.
+    \item Press start or equivalent mapped button to begin gameplay.
+    \item Check if character movement, background scrolling and sound are synchronized.
+\end{enumerate}
+
+\textbf{Expected Results}
+The title screen, menu and gameplay screens render correctly. Audio plays without stutter or noticeable latency. Controls respond accurately.
+
+\textbf{Expected Results:}
+Thge accumulator register contains the expected value after each LDA instruction. The Zero and Negative flags are set/unset correctly based on the loaded value.
+
+\subsection{User Acceptance Test Example: Debugging Tools}
+Check if the user can successfully enable and utilize the emulator's debugging interface for learning or development.
+
+\textbf{Preconditions}
+Emulator is installed and configured. User has a ROM to test.
+
+\textbf{Test Steps}
+\begin{enumerate}
+    \item Start the emulator in debug mode.
+    \item Load the ROM and pause execution at the start screen.
+    \item Inspect CPU registers, memory usage and breakpoints to observe the game's state.
+    \item Step through several instructions and note changes in registers and memory.
+\end{enumerate}
+
+\textbf{Expected Results}
+Debug interface displays register and memory states clearly. Stepping through instructions updates information in real time. No crashes or hangs occur during debug operations.
+
+\section{Reliability and Performance Validation}
+
+\subsection{Reliability}
+\textbf{Stress Testing:} Run the emulator for extended periods to ensure it remains stable without memory leaks.
+
+\textbf{Error Handling Tests:} Confirm that when loading invalid or corrupted ROMs, the emulator provides user-friendly error messages rather than crashing.
+
+\subsection{Performance}
+\textbf{Frame Rate Tests:} Measure the emulator's frame rate when running different games. Ensure it meets or exceeds 50-60 FPS on recommended hardware.
+
+\textbf{Profiling \& Optimization:} Use tools like gprof, valgrind or built-in profiling in IDEs to identify bottlenecks, e.g. CPU usage spikes during rendering.
+
+\end{document}
